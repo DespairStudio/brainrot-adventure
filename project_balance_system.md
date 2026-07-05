@@ -1,0 +1,25 @@
+---
+name: project_balance_system
+description: "Biome-1 combat/economy rebalance — what's live, key tuning constants, and what's deferred to Biome 2"
+metadata: 
+  node_type: memory
+  type: project
+  originSessionId: 9a3a17ba-3b49-4692-825a-1992670efe23
+---
+
+Forest (Biome 1 = Rebirth 1–10) rebalance, designed + implemented 2026-06-23. Two design docs in the project root: `Game_Balance_Theorycraft.md` and `Game_Balance_Fixes.md`.
+
+**Live in the place (GameData drives all constants):**
+- Per-player HP growth: `PlayerMaxHP(rb) = 100 + 8*rb` (R10→180). No global damage multiplier in Biome 1 — power comes from gear + weapon upgrades.
+- Armor mitigation `GameData.Mitigate(dmg,armor) = dmg*(1 - armor/(armor+ArmorK))`, `ArmorK=16` (Honeycomb 16 → −50%). Replaced subtractive armor that floored mob damage to 1. Used for mob+boss damage to players.
+- Parry: blocking within `ParryWindow=0.25`s of pressing = 0 damage + `ParryStun=1.25`s mob stun (mobs); full negate on boss. Hold-block still −75% (`BlockReduction`). `BlockStart` attribute stamped in PlayerInit.
+- Crystal pity: guaranteed drop after `PityThreshold=25` dry kills (per-player `CrystalPity` attribute). Gold ramp: `+GoldRebirthBonus=0.06`/rebirth per kill.
+- Weapon upgrades (gold sink for the R6–10 tail): `GameData.Upgrade{MaxLevel=10,DmgPerLvl=0.05,CostBase=250,CostGrowth=1.6}`, `UpgradeWeapon` remote + ProfileService.UpgradeWeapon, persisted in `profile.upgrades`. **UP** button on weapon gear slots in the bag UI.
+- Boss retune: `BossCrystalReward` 5→2, `BossPlayerCooldown=300`s per-player reward lockout (still sets bossDefeated gate always).
+- Soft-aim: weapon ClientAttack fallback target requires facing within ~70° cone (`LookVector:Dot >= 0.35`); direct mouse clicks unaffected.
+
+**PvP decision:** players bet GOLD to duel. Therefore duels MUST normalize stats (fixed ATK/armor/HP) so the bet is skill-decided, not pay/grind-decided. Not built yet — no PvP damage or DuelService exists.
+
+**Deferred to Biome 2+ (do NOT add to forest):** mob tier system, deep weapon/shield tiers (Gobstopper/Greatsword/Peppermint/Caramel), global rebirth damage multiplier, Warden Core currency, telegraph VFX client script, per-color mob personalities, monetization (needs real Roblox product/gamepass IDs).
+
+Related: [[project_combat_inventory_build]] [[project_rebirth_shop_build]] [[project_forest_boss_build]] [[project_forest_biome_build]]
