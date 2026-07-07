@@ -4,6 +4,7 @@ description: "Player-to-player gear trading: hold-E 'Trade Up' prompt, rebirth-g
 metadata: 
   node_type: memory
   type: project
+  originSessionId: d3c56ddd-c841-453a-a48d-e7a3b3b7337d
 ---
 
 Player trading built 2026-07-05. Design decisions (user-confirmed): max rebirth gap **±5**; tradeables = **BAG weapons+shields only** (no gold/crystals/cosmetics/chest items); high-tier gear = **own-now-equip-later** (trade goes through, equip gated by reqRebirth).
@@ -23,5 +24,9 @@ Player trading built 2026-07-05. Design decisions (user-confirmed): max rebirth 
 **Verified (solo playtest):** compiles clean; remotes + prompt props confirmed server-side; own-prompt muted (dist 0); window + popup render paths exercised via injected TradeState/TradeRequest — offers, icons, picker exclusion, ready states, texts all correct. **OPEN: full 2-player flow untested** (Play Solo = 1 player) — test with the collaborator: request→accept→swap, gap-block toast (needs reb diff >5), equipped-weapon trade (tool should swap to starter in hand), REB badge + blocked-equip toast on traded-up gear.
 
 **Gotchas:** (1) execute_luau `require()` gets a FRESH module instance (empty `profiles`) — can't inspect live ProfileService state from the tool; verify via attributes/instances instead. (2) A `.` vs `..` concat typo in ProfileService broke EVERY server script at require-time — console showed "Expected identifier" + cascade of "Requested module experienced an error while loading". (3) screen_capture still times out in play mode (same as forest-mob session).
+
+## 2026-07-07 — staked MONEY added to trades (both sides, typed)
+
+User asked to let players put money into a trade; chose **both sides can stake any typed amount**. Server (`TradeService`): session gains `money={[a]=0,[b]=0}`; new TradeAction cmd **`setmoney`** {amount} → `math.floor`, ≥0, clamped to the staker's `Profile.GetGold` balance, then resetReady + broadcast (any change re-opens ready, like items). `stateFor` adds `myMoney`/`theirMoney`. `tryLock` and the "ready" guard now allow a **money-only** trade (items OR money > 0). `executeSwap`: after item validation it checks `Profile.GetGold(a/b) >= staked`, then AFTER the item swap does `Profile.AddGold(a, mb-ma)` / `AddGold(b, ma-mb)` (net — each pays its own stake, receives the partner's; AddGold auto-Syncs both gold pills), then the existing Save both. Client (`TradeUI`): a compact `$`+field in each offer panel header (top-right) — mine a TextBox (digits-only, sends setmoney on FocusLost, TextEditable=false while locked), theirs a read-only label; added `fmtMoney` (comma groups) for their display; my box shows the raw clamped server value when unfocused. Loads clean; money TextBox + 2 `$` tags confirmed in the built TradeGui. **OPEN: 2-player live swap untested (solo session); money transfer verified by logic review only** (per gotcha 1 execute_luau can't read live ProfileService; per gotcha 3 screen_capture kept timing out this session too).
 
 See [[project_rebirth_shop_build]] (BuyItem/equip), [[project_balance_system]] (gear bands — gap 5 matches tier cadence), [[project_chest_steal]] (GrantItem precedent), [[project_inventory_friends_robux]] (social layer).
