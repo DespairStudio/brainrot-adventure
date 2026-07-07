@@ -22,14 +22,8 @@ The old boss-trophy passive income (5 gold/min, collect-at-base prompt, `bossTro
 
 ## Client
 - **StarterPlayerScripts.WelcomeBackUI** (new LocalScript): on join handshake → popup "WELCOME BACK! +$X, earned while you were away (Xh Ym)". Non-owners: "With the GOLDEN TROPHY you'd have +$3X!" + GET button (PromptProductPurchase, or RequestTrophy free in Studio). Owners: "GOLDEN TROPHY x3 ACTIVE" badge. FredokaOne/dark/gold style, Back-easing pop tween. No popup when earned = 0 or first-ever session.
+- **Shop row (added later same day, playtested)**: ForestInventoryUI CATALOG gets a synthetic `kind="Trophy"` entry (id "GoldenTrophy", Legendary gold tint, perk/desc built from GameData.Offline.TrophyMult, `robux=TrophyPriceRobux`) appended after cosmetics. makeItemIcon has an explicit `id=="GoldenTrophy"` vector branch (mini gold cup: bowl+handles+stem+base+sparkle). Robux logo+price reuses the cosmetic pattern (`kind=="Cosmetic" or kind=="Trophy"`); buy → PromptProductPurchase or Studio RequestTrophy; refreshShop Trophy branch: `lastSync.goldenTrophy` → OWNED (inactive) vs Robux BUY. Verified live flip BUY→OWNED on grant via sync.
 - Remotes added: `OfflineEarnings`, `RequestTrophy`.
 
 ## Verified in playtest (2026-07-07)
-Grant flow (attr + cup on Base_1 plinth + billboard label), both popup variants (screenshots), formula check (reb 20 → 1100/h → 12h×3 = 39600). Cup upsized ~1.4× after first screenshot looked small inside dome.
-
-## Open / caveats
-- **DataStore API blocked in this Studio session** (StudioAccessToApisNotAllowed) → the real save→rejoin offline grant is UNTESTED end to end; works only where DataStore is available (published game). Old saves lack `lastSeen`, so the FIRST login after this update earns nothing — normal from the second login.
-- TrophyProductId still 0; purchases are Studio-free-grant only until a real product id is pasted.
-- Purchase surface = welcome-back popup only; a shop-panel trophy row could be added later.
-
-Related: [[project_rebirth_shop_build]] [[project_hub_systems]] [[game_balance_theorycraft]]
+Grant flow (attr + cup on Base_1 plinth + billboard label), both popup variants (screenshots), formula check (reb 20 → 1100/h → 12h×3 = 39600). Cup upsized ~1.4× after first screenshot
