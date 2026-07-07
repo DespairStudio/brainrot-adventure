@@ -1,5 +1,3 @@
-# Memory Index
-
 - [Game Concept](project_game_concept.md) — Core MMORPG design: biomes, rebirth, bases, PvP duels, 8-player shared world, target audience 8–13
 - [Developer Handoff](project_handoff.md) — Self-contained handoff doc: full game design + current Studio build state as of 2026-06-21
 - [Town Hub Build](project_town_hub_build.md) — Hub prototype in Studio at (750,0,0): plaza, crystal monument, 4 portals, 8 bases, conventions; Pass 4: BaseOwnership + BaseRegistry auto-assign; 2026-07-03: ShopKiosk = market-stall free model (script-stripped), ShopPad moved to (700,0.5,-26)
@@ -16,7 +14,7 @@
 - [Hub Systems](project_hub_systems.md) — Hub QoL + monetization: owner-only chests, spawn-on-own-base, octagonal escalator ring, Robux cosmetics (wings +30% speed, halo +10% gold); 2026-06-23/24
 - [Inventory UI Icons](project_inventory_ui_icons.md) — HUD gold pill top-center; makeItemIcon vector gear icons; 2026-07-03: left-side SideButtons PNG icon stack (Shop/Bag/Daily Spin/Rebirth, wheel opens from HUD), Grow-a-Garden shop restyle, shop scrollbar fix, HP bar restyle
 - [Chest Steal](project_chest_steal.md) — Base chest item storage (weapons/shields persist), inspect other players' inventories, 500-Robux steal of most valuable item; 2026-06-24
-- [Wheel of Fortune](project_wheel_of_fortune.md) — Daily-spin wheel at Town Hub: 8 rarity-weighted prizes, 24h cooldown, server-authoritative; 2026-07-05: toolbox kiosk model (script-free SpinnerWheel + podyum), rebirth-scaled drops (gold ×(1+reb), band crystals, MYSTERY GEAR auto-pick) via shared WheelPrizeInfo, Grow-a-Garden UI restyle
+- [Wheel of Fortune](project_wheel_of_fortune.md) — Daily-spin wheel at Town Hub: 8 rarity-weighted prizes, 24h cooldown, server-authoritative; 2026-07-05: toolbox kiosk model (script-free SpinnerWheel + podyum), rebirth-scaled drops (gold ×(1+reb), band crystals, MYSTERY GEAR auto-pick) via shared WheelPrizeInfo, Grow-a-Garden UI restyle; 2026-07-07: Claude Design mockup restyle (fixed festive palette, near-black disc, flat octagon wedges, white-outlined red pointer, thicker gold hub) + design saved to repo as Wheel UI.html
 - [Desert Biome Build](project_desert_biome_build.md) — Biome 2 "The Gilded Wastes" at (7000,0,0), rebirth band 10→20, ~1.5× forest grind; 4 new crystals; built 2026-06-26
 - [Hell Biome Build](project_hell_biome_build.md) — Biome 3 "The Inferno" sunken realm at (0,-3000,0), rebirth band 20→30, 2× forest grind, hardest biome; built 2026-06-26
 - [Treasure Chest](project_treasure_chest.md) — Timed per-player world-event chest in forest (3h slots, deterministic per-player location, weighted loot); distinct from Chest Steal
@@ -24,4 +22,4 @@
 - [Inventory/Friends/Robux](project_inventory_friends_robux.md) — 2026-07-05: BAG shows all 12 crystals (code-drawn icons — PNGs can't tint), crystals renamed Colour+Shape per biome; FriendBuffService +5%/friend gold & crystal drop (cap +20%) + friends panel; shop Robux logo; HP bar bottom-center
 - [Forest Mob Models](project_forest_mob_models.md) — 2026-07-05: forest slimes → meme models (Skibidi Toilet/Aram Ram/Trippi Troppi/Tralalero per G/Y/B/R); insert_asset works where LoadAsset fails; stale crystal-name strings fixed; OPEN: visuals unconfirmed
 - [Trade System](project_trade_system.md) — 2026-07-05: hold-E "Trade Up" prompt on players, ±5 rebirth gap, BAG weapons/shields only, own-now-equip-later (equip gate + REB badge), two-sided window w/ ready+3s lock, atomic swap; OPEN: 2-player flow untested
-- [GitHub Memory Sync](reference_github_memory_sync.md) — github.com/MuTuOz/roblox-adventure is a shared memory drop point w/ collaborator; pull it to catch updates not made in this session; last full two-way sync 2026-07-05 commit 731c550 (filenames normalized, boss-removal correction + trade system pushed)
+- [GitHub Memory Sync](reference_github_memory_sync.md) — github.com/DespairStudio/brainrot-adventure is the shared memory drop point w/ collaborator (moved 2026-07-07 from old repo MuTuOz/roblox-adventure); PAT provided per session, not stored; pull it to catch updates not made in this session; 2026-07-07 pull found no new content beyond local
