@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <clipPath id="tl"><polygon points="0,0 512,0 0,512"/></clipPath>
+ <clipPath id="br"><polygon points="512,0 512,512 0,512"/></clipPath>
+</defs>
+ <path d="M 162,126 L 350,126 L 432,238 L 256,430 L 80,238 Z" fill="#C33BEA"/>
+ <polygon points="162,126 318,126 276,238 80,238" fill="#F5A3E1"/>
+ <polygon points="318,126 350,126 432,238 276,238" fill="#D14FF0"/>
+ <polygon points="372,238 432,238 256,430" fill="#9127CE"/>
+ <path d="M 162,126 L 350,126 L 432,238 L 256,430 L 80,238 Z" fill="none" stroke="#1C1C1C" stroke-width="30" stroke-linejoin="round" stroke-linecap="round"/></svg>

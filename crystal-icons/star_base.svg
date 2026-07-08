@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+ <clipPath id="tl"><polygon points="0,0 512,0 0,512"/></clipPath>
+ <clipPath id="br"><polygon points="512,0 512,512 0,512"/></clipPath>
+</defs><path d="M 256,40 Q 310,202 472,256 Q 310,310 256,472 Q 202,310 40,256 Q 202,202 256,40 Z" fill="#FFFFFF"/><path d="M 256,40 Q 310,202 472,256 Q 310,310 256,472 Q 202,310 40,256 Q 202,202 256,40 Z" fill="none" stroke="#1C1C1C" stroke-width="30" stroke-linejoin="round" stroke-linecap="round"/></svg>
