@@ -21,5 +21,7 @@ Push access requires a GitHub PAT with **Contents: Read and write** — an earli
 
 **2026-07-08 issue-fix push:** collaborator filed GitHub **issue #1 "Golden trophy is floating"** (cup poking out of the base dome after shop purchase) — same bug fixed in Studio that day (plinth-cap axis; see [[project_trophy_offline_build]]). Pushed the updated trophy doc with "Fixes #1" to auto-close. **Repo Issues are now a bug-report channel from the collaborator — check open issues on every pull.** Note: sandbox proxy blocks api.github.com (403), but public issue pages are readable via plain web fetch; git over github.com works fine.
 
+**2026-07-08 portal-gates push:** pull check found nothing new upstream (HEAD 1e15744 = this machine's own issue-fix push, already in local memory); no open issues. Pushed [[project_portal_gates_streaming_fix]] (NEW — biome round-trips stream the hub out/in and revert client-side gate hiding; fix = Persistent portal models + DescendantAdded re-apply listener) + refreshed MEMORY.md index (portal/trophy/sync lines).
+
 **Why:** Establishes that this repo is the cross-session/cross-collaborator sync point, so future sessions should check it rather than assuming local memory is complete.
 **How to apply:** When starting fresh work on this project, or when something in local memory looks stale, pull the repo and diff against local `.md` files before trusting either side.
