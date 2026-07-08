@@ -26,4 +26,14 @@ The old boss-trophy passive income (5 gold/min, collect-at-base prompt, `bossTro
 - Remotes added: `OfflineEarnings`, `RequestTrophy`.
 
 ## Verified in playtest (2026-07-07)
-Grant flow (attr + cup on Base_1 plinth + billboard label), both popup variants (screenshots), formula check (reb 20 → 1100/h → 12h×3 = 39600). Cup upsized ~1.4× after first screenshot
+Grant flow (attr + cup on Base_1 plinth + billboard label), both popup variants (screenshots), formula check (reb 20 → 1100/h → 12h×3 = 39600). Cup upsized ~1.4× after first screenshot looked small inside dome.
+
+## 2026-07-08 fix: cup floated above the dome
+buildCup used `cap.Position.Y + cap.Size.Y/2` for the plinth top, but PlinthCap is an UPRIGHT CYLINDER (rotated 90°) so its vertical thickness is **Size.X** (0.7), not Size.Y (5.6) → cup spawned ~2.5 studs too high, poking out of the glass Dome (7-stud ball centred at Y 7.1, top 10.6; cap top is 6.15). Fixed topY to use Size.X/2 and downsized cup ~0.8× (foot 2.7Ø, stem 1.6 tall, bowl 2.4Ø, rim 2.7Ø at topY+3.75 → rim top 10.08) so it fits the ~4.45-stud dome interior. Same gotcha applies anywhere else PlinthCap-relative heights are computed.
+
+## Open / caveats
+- **DataStore API blocked in this Studio session** (StudioAccessToApisNotAllowed) → the real save→rejoin offline grant is UNTESTED end to end; works only where DataStore is available (published game). Old saves lack `lastSeen`, so the FIRST login after this update earns nothing — normal from the second login.
+- TrophyProductId still 0; purchases are Studio-free-grant only until a real product id is pasted.
+- Purchase surfaces: welcome-back popup + CANDY SHOP row (both live).
+
+Related: [[project_rebirth_shop_build]] [[project_hub_systems]] [[game_balance_theorycraft]]
